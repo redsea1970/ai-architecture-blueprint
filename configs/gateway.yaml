@@ -1,0 +1,10 @@
+# API Gateway
+gateway:
+  auth: jwt
+  rate_limit:
+    requests_per_minute: 60
+  routes:
+    - path: /chat
+      target: router
+    - path: /health
+      target: health

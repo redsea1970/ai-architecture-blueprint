@@ -1,0 +1,11 @@
+# Cache
+cache:
+  exact:
+    ttl_seconds: 3600
+  semantic:
+    enabled: true
+    similarity_threshold: 0.9
+    ttl_seconds: 86400
+  prompt_cache:
+    enabled: true
+    system_prompt_ttl_seconds: 604800

@@ -1,0 +1,12 @@
+# Router
+router:
+  classifier: intent_model_v1
+  intents:
+    - name: qa
+      target: context_builder
+    - name: chat
+      target: model_gateway
+    - name: action
+      target: agent_tools
+    - name: irrelevant
+      target: fallback

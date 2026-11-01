@@ -1,0 +1,10 @@
+# Guardrails
+guardrails:
+  input:
+    - pii_detection
+    - prompt_injection_check
+  output:
+    - toxicity_filter
+    - pii_leak_check
+    - factuality_check
+  fallback_message: "Извините, я не могу ответить на этот вопрос."
