@@ -28,3 +28,37 @@
 
 ## Автор
 redsea1970
+
+## Оценка
+
+Проект — эталонная архитектура, а не исполняемый код. «Оценка» здесь означает проверку полноты слоёв:
+- Слоёв в архитектуре: 9 (UI, Gateway, Router, Context Builder, Model Gateway, Guardrails, Cache, Monitoring, Feedback Loop).
+- Покрыто конфигами: 4 (`cache.yaml`, `gateway.yaml`, `guardrails.yaml`, `router.yaml`).
+- Покрыто кодом-заготовкой: `prompts.py` (версионирование), `guardrails.py` (PII, токсичность, JSON).
+- Схема: `diagram.md` (Mermaid).
+
+## Ограничения
+- Это blueprint, а не рабочий сервис: нет запускаемого кода, только конфиги и схема.
+- Конфиги — примеры, а не production-готовые (нет секретов, rate limits, retry-политик).
+- `guardrails.py` — демо-фильтр PII и токсичности, не замена реальному модератору.
+- Для production нужно: реализовать каждый слой (FastAPI/aiogram/Streamlit), добавить мониторинг (Prometheus/Grafana), трассировки (OpenTelemetry).
+
+## Архитектура (слои)
+
+```mermaid
+flowchart TD
+    U[User] --> GW[API Gateway]
+    GW --> R[Router]
+    R --> CB[Context Builder]
+    R --> MG[Model Gateway]
+    CB --> VDB[(Vector DB)]
+    CB --> MG
+    MG --> GIN[Guardrails: Input]
+    GIN --> LLM[LLM API]
+    LLM --> GOUT[Guardrails: Output]
+    GOUT --> C[(Cache)]
+    C --> U
+    LLM --> MON[Monitoring]
+    MON --> FB[Feedback Loop]
+    FB --> LLM
+```
