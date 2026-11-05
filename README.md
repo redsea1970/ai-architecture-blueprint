@@ -62,3 +62,7 @@ flowchart TD
     MON --> FB[Feedback Loop]
     FB --> LLM
 ```
+
+## Архитектура
+
+Подробная схема проекта: [ARCHITECTURE.md](ARCHITECTURE.md)
